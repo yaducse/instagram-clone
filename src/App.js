@@ -2,38 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Post from './Post';
 import { db, auth } from './firebase';
-import Modal from '@material-ui/core/Modal';
-import { makeStyles } from '@material-ui/core/styles';
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
 import { Button, Input } from '@material-ui/core';
 import ImageUpload from './ImageUpload';
 
-function getModalStyle() {
-  const top = 50;
-  const left = 50;
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`
-  };
-}
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
-  }
-}));
-
 export default function App() {
-  const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = React.useState(getModalStyle);
-
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
@@ -114,7 +88,7 @@ export default function App() {
         <>
           <div className="App">
             <Modal open={open} onClose={() => setOpen(false)}>
-              <div style={modalStyle} className={classes.paper}>
+              <div>
                 <form className="app__signup">
                   <center>
                     <img src={url} alt="Instagram" className="app__headerImg" />
@@ -144,7 +118,7 @@ export default function App() {
               </div>
             </Modal>
             <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
-              <div style={modalStyle} className={classes.paper}>
+              <div>
                 <form className="app__signup">
                   <center>
                     <img src={url} alt="Instagram" className="app__headerImg" />
