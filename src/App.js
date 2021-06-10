@@ -29,8 +29,8 @@ export default function App() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(authUser => {
+      // console.log(authUser);
       if (authUser) {
-        // console.log(user, authUser);
         setUser(authUser);
       } else {
         setUser(null);
@@ -49,9 +49,9 @@ export default function App() {
       });
   }, []);
 
-  const signUp = e => {
+  const signUp = async e => {
     e.preventDefault();
-    auth
+    await auth
       .createUserWithEmailAndPassword(email, password)
       .then(authUser => {
         return authUser.user.updateProfile({

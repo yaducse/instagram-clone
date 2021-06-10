@@ -10,7 +10,6 @@ function ImageUpload(props) {
   const [image, setImage] = useState('');
 
   const imageInputRef = useRef('');
-
   const handleChange = e => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
